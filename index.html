@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Down Timer</title>
+    <style>
+        h1 {margin-top: 80px;}
+        h1, p {text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif;}
+        p {font-size: 30px; font-weight: 500;}
+        span {color: red; font-weight: 700;}
+    </style>
+</head>
+<body>
+    <h1>Count Down Timer HTML CSS & JS</h1>
+    <!-- Display the countdown timer in 'p' element -->
+    <p id="container"></p>
+
+    <script>
+    // Set the date we're counting down to
+    const countDownDate = new Date('Jan 1, 2025 15:15:15').getTime();
+
+   // Update the count down every 1 second
+   const timeUpdate = setInterval(() => {
+  // Get today's date and time
+  const now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  const distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id= 'container'
+  document.getElementById('container').innerHTML = `I'm Coming in <span>${days}</span>days,
+                <span>${hours}</span>hours, <span>${minutes}</span>minutes,
+                    and <span>${seconds}</span>seconds`;
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(timeUpdate);
+    document.getElementById('container').innerHTML = '<span>Time is Expired</span>';
+  }
+}, 1000);
+    </script>
+</body>
+</html>
